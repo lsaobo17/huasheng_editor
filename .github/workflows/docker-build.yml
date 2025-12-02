@@ -25,7 +25,7 @@ jobs:
         with:
           # 替换下方 your-dockerhub-username 为你的 DockerHub 用户名
           # 替换下方 huasheng-editor 为你想要的镜像名
-          images: your-dockerhub-username/huasheng-editor
+          images: lsaobo/huasheng-editor
           tags: |
             type=raw,value=latest
             type=sha
