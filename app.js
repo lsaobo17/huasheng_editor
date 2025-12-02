@@ -528,7 +528,10 @@ const editorApp = createApp({
       // 小红书相关
       previewMode: 'wechat',  // 预览模式：'wechat' 或 'xiaohongshu'
       xiaohongshuImages: [],  // 生成的小红书图片数组
-      xiaohongshuGenerating: false  // 是否正在生成小红书图片
+      xiaohongshuGenerating: false,  // 是否正在生成小红书图片
+
+      // 同步滚动相关
+      isSyncScrolling: false  // 标记是否正在同步滚动（防止循环触发）
     };
   },
 
@@ -594,6 +597,9 @@ const editorApp = createApp({
     // 手动触发一次渲染（确保初始内容显示）
     this.$nextTick(() => {
       this.renderMarkdown();
+
+      // 初始化同步滚动功能
+      this.initSyncScroll();
     });
   },
 
@@ -1826,7 +1832,7 @@ const markdown = \`![图片](img://\${imageId})\`;
 
         // 简单的 div/span 结构（没有富文本语义标签）
         // 检查：有 HTML 标签，但几乎没有 <p>, <h1-h6>, <strong>, <em> 等富文本标签
-        function(html) {
+        function (html) {
           const hasDivSpan = /<(?:div|span)[\s>]/.test(html);
           const hasSemanticTags = /<(?:p|h[1-6]|strong|em|ul|ol|li|blockquote)[\s>]/i.test(html);
           // 如果有 div/span 但几乎没有语义标签，可能是代码编辑器
@@ -1834,7 +1840,7 @@ const markdown = \`![图片](img://\${imageId})\`;
         },
 
         // 检查 HTML 是否只是简单包裹纯文本（几乎没有格式化）
-        function(html) {
+        function (html) {
           // 去除所有 HTML 标签，看是否与纯文本几乎一致
           const strippedHtml = html.replace(/<[^>]+>/g, '').trim();
           const similarity = strippedHtml === textData.trim();
@@ -1983,6 +1989,67 @@ const markdown = \`![图片](img://\${imageId})\`;
       if (event.target.classList.contains('markdown-input')) {
         this.isDraggingOver = false;
       }
+    },
+
+    // ============ 同步滚动功能相关方法 ============
+
+    // 初始化同步滚动
+    initSyncScroll() {
+      const editor = document.querySelector('.markdown-input');
+      const preview = document.querySelector('.preview-content');
+
+      if (!editor || !preview) {
+        console.warn('找不到编辑器或预览区元素，同步滚动功能未启用');
+        return;
+      }
+
+      // 防抖定时器
+      let scrollTimer = null;
+
+      // 编辑器滚动事件监听
+      editor.addEventListener('scroll', () => {
+        // 如果正在同步滚动，跳过（防止循环触发）
+        if (this.isSyncScrolling) return;
+
+        // 清除之前的定时器
+        if (scrollTimer) clearTimeout(scrollTimer);
+
+        // 延迟执行，减少计算频率（防抖）
+        scrollTimer = setTimeout(() => {
+          this.syncScroll(editor, preview);
+        }, 10);
+      });
+
+      console.log('✅ 同步滚动功能已启用');
+    },
+
+    // 执行同步滚动
+    syncScroll(editor, preview) {
+      // 计算编辑器可滚动的总高度
+      const editorScrollHeight = editor.scrollHeight - editor.clientHeight;
+
+      // 避免除以0（内容不足一屏时）
+      if (editorScrollHeight <= 0) return;
+
+      // 计算当前滚动比例（0-1之间）
+      const scrollRatio = editor.scrollTop / editorScrollHeight;
+
+      // 计算预览区可滚动的总高度
+      const previewScrollHeight = preview.scrollHeight - preview.clientHeight;
+
+      // 计算预览区应该滚动到的位置
+      const targetScrollTop = previewScrollHeight * scrollRatio;
+
+      // 标记正在同步滚动（防止预览区的滚动事件再次触发）
+      this.isSyncScrolling = true;
+
+      // 执行预览区滚动
+      preview.scrollTop = targetScrollTop;
+
+      // 延迟重置标记（50ms后允许下次同步）
+      setTimeout(() => {
+        this.isSyncScrolling = false;
+      }, 50);
     },
 
     // ============ 小红书功能相关方法 ============

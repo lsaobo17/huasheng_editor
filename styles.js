@@ -203,7 +203,7 @@ const STYLES = {
     }
   },
 
-'wechat-nyt': {
+  'wechat-nyt': {
     name: '纽约时报',
     styles: {
       container: 'max-width: 680px; margin: 0 auto; padding: 48px 12px; font-family: Georgia, "Times New Roman", Times, serif; font-size: 18px; line-height: 1.8 !important; color: #121212 !important; background-color: #fff !important; word-wrap: break-word;',
@@ -261,7 +261,7 @@ const STYLES = {
     }
   },
 
-'wechat-medium': {
+  'wechat-medium': {
     name: 'Medium 长文',
     styles: {
       container: 'max-width: 680px; margin: 0 auto; padding: 48px 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 21px; line-height: 1.58 !important; color: #242424 !important; background-color: #fff !important; word-wrap: break-word; letter-spacing: -0.003em;',
@@ -522,6 +522,80 @@ const STYLES = {
       th: 'background-color: transparent !important; padding: 15px; text-align: left; border-top: 2px solid #2c2c2c; border-bottom: 1px solid #2c2c2c; font-weight: 600; color: #2c2c2c !important; font-style: italic; text-transform: uppercase; letter-spacing: 0.05em; font-size: 14px;',
       td: 'padding: 12px 15px; border-bottom: 1px solid #e0e0e0; color: #2c2c2c !important;',
       tr: 'border-bottom: 1px solid #e0e0e0;',
+    }
+  },
+
+  'yunzhong-style': {
+    name: '云中书笺',
+    styles: {
+      // 容器 - 米黄色背景，营造古朴氛围
+      container: 'max-width: 677px; margin: 0 auto; padding: 40px 20px; font-family: "STSong", "SimSun", "Songti SC", Georgia, serif; font-size: 17px; line-height: 2 !important; color: #3e3a39 !important; background-color: #fdf6e3 !important; word-wrap: break-word; letter-spacing: 0.5px;',
+
+      // 一级标题 - 居中，优雅大气
+      h1: 'font-size: 26px; font-weight: 600; color: #8b4513 !important; line-height: 1.6 !important; margin: 48px 0 32px; text-align: center; letter-spacing: 3px; padding: 0 20px; position: relative;',
+
+      // 二级标题 - 深褐色，左对齐，有装饰边框
+      h2: 'font-size: 22px; font-weight: 600; color: #8b4513 !important; line-height: 1.7 !important; margin: 40px 0 24px; text-align: left; padding: 12px 20px; background: linear-gradient(to right, rgba(139, 69, 19, 0.08) 0%, transparent 100%); border-left: 4px solid #d2691e; letter-spacing: 2px;',
+
+      // 三级标题 - 稍小，传统风格
+      h3: 'font-size: 20px; font-weight: 600; color: #704214 !important; line-height: 1.8 !important; margin: 32px 0 20px; text-align: left; padding-left: 16px; border-left: 3px solid #cd853f; letter-spacing: 1.5px;',
+
+      // 四级标题
+      h4: 'font-size: 18px; font-weight: 600; color: #5d4037 !important; line-height: 1.8 !important; margin: 28px 0 16px; letter-spacing: 1px;',
+
+      // 五级标题
+      h5: 'font-size: 17px; font-weight: 600; color: #6d4c41 !important; line-height: 1.8 !important; margin: 24px 0 14px; letter-spacing: 0.8px;',
+
+      // 六级标题
+      h6: 'font-size: 16px; font-weight: 600; color: #795548 !important; line-height: 1.8 !important; margin: 20px 0 12px; letter-spacing: 0.5px;',
+
+      // 段落 - 首行缩进2字符，较大行距
+      p: 'margin: 20px 0 !important; line-height: 2.2 !important; color: #3e3a39 !important; text-align: justify; text-indent: 2em; letter-spacing: 0.5px;',
+
+      // 加粗文字 - 使用深褐色强调
+      strong: 'font-weight: 700; color: #8b4513 !important; letter-spacing: 0.5px;',
+
+      // 斜体 - 保持优雅
+      em: 'font-style: italic; color: #5d4037 !important; letter-spacing: 0.3px;',
+
+      // 链接 - 低调的下划线
+      a: 'color: #8b4513 !important; text-decoration: none; border-bottom: 1px dotted #cd853f; transition: all 0.3s;',
+
+      // 无序列表
+      ul: 'margin: 24px 0; padding-left: 32px; list-style-type: circle;',
+
+      // 有序列表
+      ol: 'margin: 24px 0; padding-left: 32px; list-style-type: simp-chinese-informal;',
+
+      // 列表项 - 较大间距
+      li: 'margin: 16px 0; line-height: 2 !important; color: #3e3a39 !important; letter-spacing: 0.5px;',
+
+      // 引用块 - 传统竹简风格
+      blockquote: 'margin: 40px auto; padding: 24px 32px; background: linear-gradient(to right, rgba(139, 69, 19, 0.05) 0%, rgba(139, 69, 19, 0.02) 100%); border-left: 4px solid #cd853f; border-right: 1px solid #deb887; color: #5d4037 !important; font-size: 16px; line-height: 2.2 !important; font-style: italic; max-width: 600px; position: relative; box-shadow: 2px 2px 8px rgba(139, 69, 19, 0.08);',
+
+      // 行内代码 - 简约风格
+      code: 'font-family: "Courier New", Consolas, monospace; font-size: 15px; padding: 2px 8px; background-color: rgba(139, 69, 19, 0.1) !important; color: #8b4513 !important; border-radius: 3px; border: 1px solid rgba(139, 69, 19, 0.2);',
+
+      // 代码块
+      pre: 'margin: 32px 0; padding: 24px; background: linear-gradient(135deg, #2a2420 0%, #3e3430 100%); color: #f5deb3 !important; border-radius: 8px; overflow-x: auto; line-height: 1.8 !important; border-left: 4px solid #cd853f; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);',
+
+      // 分隔线 - 优雅的卷轴装饰
+      hr: 'margin: 56px auto; border: none; height: 30px; background: url("data:image/svg+xml,%3Csvg width=\'120\' height=\'30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M10,15 Q35,8 60,15 T110,15\' stroke=\'%23cd853f\' stroke-width=\'1.5\' fill=\'none\' opacity=\'0.6\'/%3E%3C/svg%3E") repeat-x center; background-size: 120px 30px; max-width: 360px;',
+
+      // 图片 - 古典边框
+      img: 'max-width: 100%; max-height: 500px !important; height: auto; display: block; margin: 36px auto; border-radius: 4px; border: 3px solid #deb887; box-shadow: 0 6px 16px rgba(139, 69, 19, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.5); padding: 8px; background-color: #fff !important;',
+
+      // 表格 - 简洁的传统风格
+      table: 'width: 100%; margin: 32px 0; border-collapse: collapse; font-size: 16px; background-color: #fffef9 !important;',
+
+      // 表头
+      th: 'background: linear-gradient(to bottom, #e8dcc8 0%, #d6c9b0 100%); color: #5d4037 !important; padding: 14px 18px; text-align: left; border: 1px solid #deb887; font-weight: 600; letter-spacing: 1px;',
+
+      // 表格单元格
+      td: 'padding: 12px 18px; border: 1px solid #deb887; color: #3e3a39 !important; background-color: #fffef9 !important;',
+
+      // 表格行
+      tr: 'border-bottom: 1px solid #deb887;',
     }
   }
 };

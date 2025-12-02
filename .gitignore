@@ -8,3 +8,9 @@ dist/
 *.swp
 *.swo
 *~
+
+# 测试和演示文件
+test-*.md
+*-test.md
+demo-*.md
+*-demo.md
